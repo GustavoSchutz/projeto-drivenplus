@@ -3,6 +3,9 @@ import { Container, Button, ButtonText, Logo, Forms, StyledLink } from '../../st
 import logoImg from '../../assets/images/logo.png'
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import { postLogin } from '../../services/drivenplus';
+
+
 
 
 
@@ -10,8 +13,6 @@ import { useState } from 'react';
 export default function Login() {
     
     const [email, setEmail] = useState("");
-
-    const [register, setRegister] = useState("");
 
     const [password, setPassword] = useState("");
 
