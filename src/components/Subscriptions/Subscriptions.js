@@ -1,8 +1,15 @@
 import { useState, useEffect } from "react";
+import styled from "styled-components";
 import { getPlansList } from "../../services/drivenplus"
 import { Title } from "../../styles/componets"
 import Plan from "./Plan";
 
+const Align =  styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1.5rem;
+`
 
 export default function Subscriptions() {
 
@@ -26,11 +33,11 @@ export default function Subscriptions() {
     
 
     return (
-        <>
+        <Align>
             <Title>Escolha seu Plano</Title>
             {plansList.map((pl) => {
-                return <Plan key={pl.id} pl={pl} />
+                return <Plan pl={pl} />
             })}
-        </>
+        </Align>
     )
 }

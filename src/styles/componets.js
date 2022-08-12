@@ -12,6 +12,8 @@ const Container = styled.div`
 const Title = styled.h1`
     color: white;
     font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
 `
 
 const Logo = styled.div`
