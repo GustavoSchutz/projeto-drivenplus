@@ -9,6 +9,11 @@ const Container = styled.div`
 
 `;
 
+const Title = styled.h1`
+    color: white;
+    font-size: 2rem;
+`
+
 const Logo = styled.div`
     ${'' /* margin-top: 25vh; */}
     margin-bottom: 15vh;
@@ -37,6 +42,7 @@ const Button = styled.div`
     justify-content: center;
     align-items: center;
 `
+
 const ButtonText = styled.p`
 
     color: white;
@@ -54,4 +60,4 @@ const StyledLink = styled.p`
     text-decoration: underline;
 
 `
-export { Container, Button, ButtonText, Logo, Forms, StyledLink }
+export { Container, Button, ButtonText, Logo, Forms, StyledLink, Title }

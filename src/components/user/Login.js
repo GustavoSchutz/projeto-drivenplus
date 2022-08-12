@@ -12,15 +12,38 @@ import { postLogin } from '../../services/drivenplus';
 
 export default function Login() {
     
+    const navigate = useNavigate();
+    
     const [email, setEmail] = useState("");
 
     const [password, setPassword] = useState("");
+
+    const userBuild = {};
 
     const handleChangeEmail = event => { 
         setEmail(event.target.value);
     };
     const handleChangePassword = event => {
         setPassword(event.target.value);
+    }
+
+    function handleClickLogin() {
+        userBuild.email = email;
+        userBuild.password = password;
+        console.log("userBuild: ", userBuild);
+
+        postLogin(userBuild).then((res) => {
+            console.log("data:", res.data);
+            localStorage.setItem("token", res.data.token);
+            if (res.data.membership === null) {
+                navigate('/subscriptions');
+            } else {
+                navigate('/home');
+            }
+        }).catch((res) => {
+            alert(res.message);
+            console.log("errorData: ", res)
+        })
     }
 
     return(
@@ -33,7 +56,7 @@ export default function Login() {
             <Forms type={"password"} placeholder='Senha' onChange={handleChangePassword} value={password} required />
 
             <Button>
-                <ButtonText>ENTRAR</ButtonText>
+                <ButtonText onClick={handleClickLogin}>ENTRAR</ButtonText>
             </Button>
             <Link to={`/signup`}>
                 <StyledLink>Não tem uma conta? Cadastre-se!</StyledLink>
