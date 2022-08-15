@@ -4,6 +4,8 @@ import logoImg from '../../assets/images/logo.png'
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { postLogin } from '../../services/drivenplus';
+import { useContext } from 'react';
+import UserContext from '../../contexts/UserContext';
 
 
 
@@ -11,7 +13,9 @@ import { postLogin } from '../../services/drivenplus';
 
 
 export default function Login() {
-    
+
+    const {userMemberStatus, setUserMemberStatus} = useContext(UserContext);
+
     const navigate = useNavigate();
     
     const [email, setEmail] = useState("");
@@ -34,6 +38,7 @@ export default function Login() {
 
         postLogin(userBuild).then((res) => {
             console.log("data:", res.data);
+            setUserMemberStatus(res.data);
             localStorage.setItem("token", res.data.token);
             if (res.data.membership === null) {
                 navigate('/subscriptions');

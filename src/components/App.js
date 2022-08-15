@@ -17,13 +17,16 @@ const Background = styled.div`
 
 export default function App() {
     
+
+    const [userMemberStatus, setUserMemberStatus] = useState({});
+
     const [planInfoObj, setPlanInfoObj] = useState({});
 
 
     return (
         <Background>
             <BrowserRouter>
-                <UserContext.Provider value={{ planInfoObj, setPlanInfoObj }} >
+                <UserContext.Provider value={{ planInfoObj, setPlanInfoObj, userMemberStatus, setUserMemberStatus }} >
                     <Routes>
                         <Route path="/" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />

@@ -39,5 +39,13 @@ function postCardForms(body, token) {
   const promise = axios.post(`${BASE_URL}/subscriptions`, body, auth);
   return promise;
 }
+function deletePlan(token) {
+  const auth = {};
+  auth.headers = {};
+  auth.headers.Authorization = "Bearer " + token;
 
-export { postSignup, postLogin, getPlansList, getPlanInfo, postCardForms };
+  const promise = axios.delete(`${BASE_URL}/subscriptions`, auth);
+  return promise;
+}
+
+export { postSignup, postLogin, getPlansList, getPlanInfo, postCardForms, deletePlan };

@@ -7,6 +7,8 @@ import clipboardIcon from "../../assets/images/clipboard.png";
 import moneyIcon from "../../assets/images/money.png";
 import arrowIcon from "../../assets/images/arrow.png";
 import xis from "../../assets/images/xis.png";
+import { useContext } from "react"
+import UserContext from "../../contexts/UserContext"
 
 import PerksList from "./PerksList";
 
@@ -104,6 +106,7 @@ const No = styled.div`
     color:white;
 
 `
+
 const Yes = styled.div`
 
     display: flex;
@@ -138,6 +141,9 @@ export default function PlanInfo() {
     const id = params.planID;
 
     const [planInfoObj, setPlanInfoObj] = useState({});
+    
+    const {userMemberStatus, setUserMemberStatus} = useContext(UserContext);
+
 
 
     useEffect(() => {
@@ -158,30 +164,8 @@ export default function PlanInfo() {
     const [cardNum, setCardNum] = useState("");
     const [securityNum, setSecurityNum] =  useState("");
     const [expirationDate, setExpirationDate] = useState("");
-
+    const [postCardBody, setPostCardBody] = useState({});
     const postCardObj = {};
-
-
-
-    function handlePostCardForms(){
-        postCardObj.cardName = cardName;
-        postCardObj.cardNumber = cardNum;
-        postCardObj.expirationDate = expirationDate;
-        postCardObj.securityNumber =  Number(securityNum);
-        postCardObj.membershipId = Number(id);
-        console.log(postCardObj);
-        setPopUpDisplay("flex");
-    }
-
-    function handlePostCardData() {
-        postCardForms(postCardObj, token).then((res) => {
-            console.log("data:", res.data);
-            navigate("/home");
-        }).catch((res) => {
-            alert(res.message);
-            console.log("errorData: ", res);
-        });
-    }
 
     const handleChangeCardName = event => {
         setCardName(event.target.value);
@@ -195,6 +179,31 @@ export default function PlanInfo() {
     const handleChangeSecurityNum = event => {
         setSecurityNum(event.target.value);
     }
+
+    function handlePostCardForms(){
+        postCardObj.cardName = cardName;
+        postCardObj.cardNumber = cardNum;
+        postCardObj.expirationDate = expirationDate;
+        postCardObj.securityNumber =  Number(securityNum);
+        postCardObj.membershipId = Number(id);
+        console.log(postCardObj);
+        setPostCardBody(postCardObj);
+        setPopUpDisplay("flex");
+    }
+
+    function handlePostCardData() {
+        console.log(postCardBody);
+        postCardForms(postCardBody, token).then((res) => {
+            console.log("data:", res.data);
+            setUserMemberStatus(res.data);
+            navigate("/home");
+        }).catch((res) => {
+            alert(res.message);
+            console.log("errorData: ", res);
+        });
+    }
+
+   
 
     function handleClosePopUp() {
         setPopUpDisplay("none");
