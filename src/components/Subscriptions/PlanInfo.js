@@ -167,8 +167,8 @@ export default function PlanInfo() {
         postCardObj.cardName = cardName;
         postCardObj.cardNumber = cardNum;
         postCardObj.expirationDate = expirationDate;
-        postCardObj.securityNumber =  securityNum;
-        postCardObj.membershipId = id;
+        postCardObj.securityNumber =  Number(securityNum);
+        postCardObj.membershipId = Number(id);
         console.log(postCardObj);
         setPopUpDisplay("flex");
     }
