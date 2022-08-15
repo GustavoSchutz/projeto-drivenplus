@@ -22,4 +22,22 @@ function getPlansList(token) {
   return promise;
 }
 
-export { postSignup, postLogin, getPlansList };
+function getPlanInfo(token, id) {
+  const auth = {};
+  auth.headers = {};
+  auth.headers.Authorization = "Bearer " + token;
+
+  const promise = axios.get(`${BASE_URL}/subscriptions/memberships/${id}`, auth);
+  return promise;
+}
+
+function postCardForms(body, token) {
+  const auth = {};
+  auth.headers = {};
+  auth.headers.Authorization = "Bearer " + token;
+
+  const promise = axios.post(`${BASE_URL}/subscriptions`, body, auth);
+  return promise;
+}
+
+export { postSignup, postLogin, getPlansList, getPlanInfo, postCardForms };

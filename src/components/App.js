@@ -5,6 +5,7 @@ import Signup from "./user/Signup";
 import styled from 'styled-components'
 import Subscriptions from "./Subscriptions/Subscriptions";
 import Home from "./Home/Home";
+import PlanInfo from "./Subscriptions/PlanInfo";
 import { useState } from "react";
 
 const Background = styled.div`
@@ -16,19 +17,19 @@ const Background = styled.div`
 
 export default function App() {
     
-    const [planInfoObj, setPlanInfoObj] = useState;
+    const [planInfoObj, setPlanInfoObj] = useState({});
 
 
     return (
         <Background>
             <BrowserRouter>
-                <UserContext.Provider value={{}} >
+                <UserContext.Provider value={{ planInfoObj, setPlanInfoObj }} >
                     <Routes>
                         <Route path="/" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
                         <Route path="/subscriptions" element={<Subscriptions />} />
                         <Route path="/home" element={<Home />} />
-                        <Route path="/subscriptions/ID_DO_PLANO" element={<PlanInfo />} />
+                        <Route path="/subscriptions/:planID" element={<PlanInfo />} />
                     </Routes>
                 </UserContext.Provider>
             </BrowserRouter>

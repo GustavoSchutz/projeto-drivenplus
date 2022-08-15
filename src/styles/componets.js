@@ -23,12 +23,23 @@ const Logo = styled.div`
 `
 
 const Forms = styled.input`
-    height: 3.5rem;
+    height: 3rem;
     width: 83vw;
     border: 0px;
     border-radius: 5px;
     margin-bottom: .8rem;
-    text-indent: .8rem;
+    text-indent: .6rem;
+    font-size: .9rem;
+    box-sizing: border-box;
+`
+
+const HalfForms = styled.input`
+    height: 3rem;
+    width: 40vw;
+    border: 0px;
+    border-radius: 5px;
+    margin-bottom: .8rem;
+    text-indent: .6rem;
     font-size: .9rem;
     box-sizing: border-box;
 `
@@ -62,4 +73,4 @@ const StyledLink = styled.p`
     text-decoration: underline;
 
 `
-export { Container, Button, ButtonText, Logo, Forms, StyledLink, Title }
+export { Container, Button, ButtonText, Logo, Forms, StyledLink, Title, HalfForms }

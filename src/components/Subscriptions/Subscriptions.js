@@ -17,6 +17,7 @@ export default function Subscriptions() {
 
     const [plansList, setPlansList] = useState([]);
 
+    
     useEffect(() => {
 
         getPlansList(token).then((res) => {

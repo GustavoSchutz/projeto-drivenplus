@@ -1,3 +1,5 @@
+
+import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 const StyledPlan = styled.div`
@@ -21,10 +23,15 @@ const Price = styled.p`
 
 export default function Plan({ pl }) {
     
+    const navigate = useNavigate();
+
+    function handleClickPlan() {
+        navigate(`/subscriptions/${pl.id}`)
+    }
     
     return (
-
-        <StyledPlan key={pl.id}>
+        
+        <StyledPlan onClick={handleClickPlan} >
             <img alt="plan logo" src={ pl.image }></img>
             <Price>R${pl.price}</Price>
         </StyledPlan>
